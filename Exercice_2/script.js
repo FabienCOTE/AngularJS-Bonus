@@ -1,7 +1,7 @@
-var app = angular.module("app",[]);
+var app = angular.module("appAlert",[]);
 
-app.controller("clickCtrl", function($scope) {
-  $scope.clickButton = function(){
-    alert("Message alerte :)");
+app.controller("clickCtrl", ["$scope", function($scope) {
+  $scope.clickButton = function() {
+    alert("Message alerte");
   }
-});
+}]);

@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="app">
+<html lang="fr" ng-app>
   <head>
     <meta charset="utf-8" />
     <title>Exercice 1</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div ng-controller="mailCtrl">
+    <div>
       <form name="form">
-        <label for="input">Email</label>
-        <input type="text" ng-model="modelmail" id="email" name="email" ng-pattern="regex" />
-        <div class="red" ng-show="!form.email.$valid">Saisie incorrecte</div>
-        <div class="green" ng-if="modelmail">Saisie correcte</div>
+        <label for="email">Email</label>
+        <input type="text" ng-model="email" id="email" name="email" ng-pattern="/[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+)?/" />
+        <div class="red" ng-show="form.email.$touched && form.email.$error.pattern"><p>Saisie incorrecte</p></div>
+        <div class="green" ng-show="form.email.$touched && !form.email.$error.pattern"><p>Saisie correcte</p></div>
       </form>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
-    <script src="script.js"></script>
   </body>
 </html>

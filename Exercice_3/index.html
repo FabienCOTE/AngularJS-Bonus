@@ -3,43 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <title>Exercice 3</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div ng-controller="formulaireCtrl">
-    <form name="userForm" ng-submit="submit()" novalidate>
-      <!-- name -->
-      <div class="form-group">
-        <label>Name</label>
-        <input type="text" ng-model="name" name="name" class="form-control"
-        ng-model="main.name"
-        ng-minlength="5"
-        ng-maxlength="10"
-        required>
-
-        <div class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched">
-          <p ng-message="minlength">Your name is too short.</p>
-          <p ng-message="maxlength">Your name is too long.</p>
-          <p ng-message="required">Your name is required.</p>
-        </div>
-      </div>
-
-      <!-- email -->
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control"
-        ng-model="main.email"
-        required>
-
-        <div class="help-block" ng-messages="userForm.email.$error" ng-if="userForm.email.$touched">
-          <div ng-messages-include="erreurs.html"></div>
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-danger">Submit</button>
-    </form>
+<body ng-controller="formCtrl">
+  <form name="myForm" novalidate>
+    <label for="formLastName">Nom</label>
+    <input type="text" id="formLastName" ng-model="formLastName" name="formLastName" required/>
+    <p class="danger" ng-show="myForm.formLastName.$touched && myForm.formLastName.$invalid">Vous devez inscrire votre nom</p>
+    <label for="formEmail">Email</label>
+    <input type="text" id="formEmail" ng-model="formEmail" name="formEmail" ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]){2,4}$/" required/>
+    <p class="danger" ng-show="myForm.formEmail.$touched && myForm.formEmail.$invalid">Le champ est vide ou ladresse mail n'est pas valide (ex: johndoe@gmail.com)</p>
+    <label for="formTopic">Sujet</label>
+    <input type="text" id="formTopic" ng-model="formTopic" name="formTopic" required/>
+    <p class="danger" ng-show="myForm.formTopic.$touched && myForm.formTopic.$invalid">Vous devez inscrire un sujet</p>
+    <label for="formText">Texte</label>
+    <textarea type="text" id="formText" ng-model="formText" name="formText" required></textarea>
+    <p class="danger" ng-show="myForm.formText.$touched && myForm.formText.$invalid">Vous devez inscrire un texte</p>
+    <button ng-click="clickButton()">Envoyer</button>
+  </form>
+  <div ng-repeat="globalArrays in globalArray">
+    <a href="#!{{globalArrays}}">{{globalArrays[3]}}</a>
   </div>
+  <div ng-view></div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
